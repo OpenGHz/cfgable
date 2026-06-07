@@ -1,0 +1,53 @@
+name: Bug report
+description: Report reproducible behavior that looks incorrect.
+title: "bug: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug. Please include a minimal reproduction so the behavior can be verified quickly.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What happened, and what did you expect instead?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Paste the smallest Python snippet, YAML config, or test case that reproduces the issue.
+      render: python
+    validations:
+      required: true
+  - type: input
+    id: cfgable-version
+    attributes:
+      label: cfgable version
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: input
+    id: python-version
+    attributes:
+      label: Python version
+      placeholder: "3.11.9"
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment details
+      description: Include pydantic, hydra-core, and omegaconf versions if relevant.
+      render: text
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched existing issues before opening this one.
+          required: true
+        - label: This is not a security vulnerability.
+          required: true

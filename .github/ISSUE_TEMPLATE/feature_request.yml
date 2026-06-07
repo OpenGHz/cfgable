@@ -1,0 +1,32 @@
+name: Feature request
+description: Propose an improvement or new capability.
+title: "feat: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Use case
+      description: What are you trying to build, and where does cfgable fall short today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed API or behavior
+      description: Describe the interface you would like to use. Small code examples are helpful.
+      render: python
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: What workarounds or related APIs have you considered?
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope checks
+      options:
+        - label: The proposal keeps `import cfgable` free of Hydra/OmegaConf imports unless explicitly discussed.
+        - label: The proposal preserves the single-`config` construction protocol unless explicitly discussed.
