@@ -6,6 +6,7 @@
 
 English | [简体中文](README.zh-CN.md)
 
+[![PyPI](https://img.shields.io/pypi/v/cfgable.svg)](https://pypi.org/project/cfgable/)
 [![Python](https://img.shields.io/badge/python-%3E%3D3.8-blue.svg)](pyproject.toml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Built on pydantic](https://img.shields.io/badge/built%20on-pydantic-e92063.svg)](https://docs.pydantic.dev/)
