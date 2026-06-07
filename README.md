@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/OpenGHz/cfgable/main/assets/logo.png" alt="cfgable" width="420">
+</p>
+
 # cfgable
 
 English | [简体中文](README.zh-CN.md)
