@@ -6,7 +6,7 @@
 
 English | [简体中文](README.zh-CN.md)
 
-[![Python](https://img.shields.io/badge/python-%3E%3D3.9-blue.svg)](pyproject.toml)
+[![Python](https://img.shields.io/badge/python-%3E%3D3.8-blue.svg)](pyproject.toml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Built on pydantic](https://img.shields.io/badge/built%20on-pydantic-e92063.svg)](https://docs.pydantic.dev/)
 
@@ -19,15 +19,15 @@ The core depends only on pydantic; the Hydra bridge is optional.
 
 ## Requirements
 
-- Python 3.9 or newer
+- Python 3.8 or newer
 - pydantic 2.x
 - Hydra support requires the optional `hydra` extra
 
 ## Install
 
 ```bash
-pip install "cfgable @ git+https://github.com/OpenGHz/cfgable.git"
-pip install "cfgable[hydra] @ git+https://github.com/OpenGHz/cfgable.git"
+pip install cfgable
+pip install "cfgable[hydra]"
 ```
 
 From a local checkout, use `pip install .` for the core package or `pip install
@@ -130,7 +130,7 @@ cam = Camera("cam.yaml")
 - `InitConfigMeta` / `InitConfigABCMeta` — the metaclass that assembles configs.
 - `NoConfig` — placeholder for components that need no settings.
 - `StrEnum`, `ReprEnum` — a string-enum backport (use this `StrEnum`, not `enum.StrEnum`,
-  for consistent behavior across Python 3.9–3.13).
+  for consistent behavior across Python 3.8–3.13).
 - `ForceSetAttr` / `force_set_attr` — controlled mutation of otherwise-frozen configs.
 - `import_string`, `get_fully_qualified_class_name`, `dump_or_repr`, `fetch_config`.
 - `cfgable.hydra_utils` — `init_hydra_config`, `hydra_instance`,

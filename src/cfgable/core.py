@@ -13,12 +13,12 @@ from typing import (
     final,
     get_type_hints,
 )
-from collections.abc import Mapping, Callable
+from typing import Mapping, Callable
 from typing_extensions import get_args, Self
 from pydantic import BaseModel, TypeAdapter
 from pydantic_yaml import to_yaml_file
 from pathlib import Path
-from functools import cache
+from functools import lru_cache
 from weakref import WeakSet
 from ._typing import (
     DataClassProto,  # noqa: F401  re-exported for backward-compat shims
@@ -120,7 +120,7 @@ class InitConfigMeta(type):
         return getLogger(cls.__name__)
 
     @staticmethod
-    @cache
+    @lru_cache(maxsize=None)
     def resolve_config_type(cls) -> Optional[Type]:
         cfg_type = InitConfigMeta.get_annotation(cls, "config")
         if cfg_type in (None, ...) or (getattr(cls, "config", object) in (None, ...)):
@@ -130,7 +130,7 @@ class InitConfigMeta(type):
         return cfg_type
 
     @staticmethod
-    @cache
+    @lru_cache(maxsize=None)
     def get_annotation(cls, name: str) -> Optional[Any]:
         return getattr(cls, "__annotations__", {}).get(name, object)
 
@@ -203,7 +203,7 @@ class InitConfigMixinBasis:
             mode: The mode to save the config. If None, it will be inferred from the file extension.
         """
         with open(path, "w") as f:
-            mode = Path(path).suffix.removeprefix(".") if mode is None else mode
+            mode = Path(path).suffix[1:] if mode is None else mode
             if mode in ("yaml", "yml"):
                 if isinstance(self.config, BaseModel):
                     try:

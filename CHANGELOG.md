@@ -17,7 +17,7 @@ Initial public baseline.
   component's `config` from an explicit object, a mapping, or flat keyword arguments.
 - `NoConfig` placeholder for components that need no settings.
 - `StrEnum` / `ReprEnum` string-enum backport for consistent behavior across
-  Python 3.9–3.13.
+  Python 3.8–3.13.
 - `ForceSetAttr` / `force_set_attr` / `validate_field` / `force_validate_field` for
   controlled mutation and validation of frozen configs.
 - Reflection helpers: `import_string`, `get_fully_qualified_class_name`,

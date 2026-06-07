@@ -5,12 +5,10 @@ by ``cfgable/__init__.py`` — import it explicitly:
 ``from cfgable.hydra_utils import init_hydra_config``.
 """
 
-from __future__ import annotations
-
 import hydra
 import os.path as osp
 from omegaconf import DictConfig
-from typing import Optional
+from typing import List, Optional
 from pathlib import Path
 
 
@@ -31,7 +29,7 @@ def relative_path_between(path1: Path, path2: Path) -> Path:
 
 
 def init_hydra_config(
-    config_path: str, overrides: Optional[list[str]] = None
+    config_path: str, overrides: Optional[List[str]] = None
 ) -> DictConfig:
     """Initialize a Hydra config given only the path to the relevant config file.
 
