@@ -1,0 +1,37 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cfgable"
+version = "0.1.0"
+description = "Reusable pydantic/dataclass-driven configuration framework with an optional Hydra bridge."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+authors = [{ name = "OpenGHz" }]
+keywords = ["pydantic", "hydra", "configuration", "config", "settings"]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Typing :: Typed",
+]
+dependencies = [
+    "pydantic >=2",
+    "typing-extensions",
+    "pydantic-yaml",
+]
+
+[project.optional-dependencies]
+hydra = ["hydra-core", "omegaconf"]
+cli = ["pydantic-settings"]
+dev = ["pytest", "hydra-core", "omegaconf"]
+
+[project.urls]
+Repository = "https://github.com/OpenGHz/cfgable"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/cfgable"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
