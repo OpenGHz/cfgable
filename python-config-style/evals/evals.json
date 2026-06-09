@@ -1,0 +1,29 @@
+{
+  "skill_name": "python-config-style",
+  "evals": [
+    {
+      "id": 0,
+      "name": "config-class-training",
+      "prompt": "I'm setting up a training run and need a config object for it. It should hold: learning rate (a positive float, default 3e-4), batch size (a positive int, default 32), number of epochs (positive int), the optimizer name which can only be adam, adamw, or sgd (default adamw), and an optional path to resume a checkpoint from. Write me the config.",
+      "expected_output": "A pydantic BaseModel named like TrainingConfig, frozen=True, model_config with use_attribute_docstrings=True, each field documented with an attribute docstring (triple-quoted string below the field), constrained types (PositiveFloat/PositiveInt) instead of bare float/int + validators, Literal['adam','adamw','sgd'] for the optimizer, Optional[Path]/Path|None for the checkpoint. No argparse, no description= duplication.",
+      "files": [],
+      "assertions": []
+    },
+    {
+      "id": 1,
+      "name": "cli-dedup-script",
+      "prompt": "Write a small command-line script that finds duplicate files in a directory by content hash and reports them. It needs an input directory argument, a --dry-run flag (just report, don't delete), and a minimum file size in bytes to bother hashing (default 1024). Give it a proper CLI.",
+      "expected_output": "Uses pydantic-settings CliApp.run on a pydantic config model (not argparse, not Hydra). Config model has attribute docstrings + use_attribute_docstrings=True. Has a parse_config/main(cli_args=None) scaffold and __main__ guard. The worker function takes the single validated config object.",
+      "files": [],
+      "assertions": []
+    },
+    {
+      "id": 2,
+      "name": "refactor-single-config",
+      "prompt": "Refactor the attached DatabaseClient so it fits our config style — it currently takes a pile of keyword arguments in __init__. We want to be able to build it from a validated config object (and eventually instantiate it from YAML). Keep the behavior the same.",
+      "expected_output": "Introduces a pydantic config class (e.g. DatabaseClientConfig), frozen=True, attribute docstrings + use_attribute_docstrings=True, constrained types where they fit (e.g. PositiveInt for port/retries/pool_size, PositiveFloat for timeout). DatabaseClient.__init__ now takes a single config parameter and sets self.config = config, reading fields as self.config.x. Does not explode the config into many self.* attributes.",
+      "files": ["db_client.py"],
+      "assertions": []
+    }
+  ]
+}
